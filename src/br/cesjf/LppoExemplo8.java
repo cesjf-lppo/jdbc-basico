@@ -29,13 +29,14 @@ public class LppoExemplo8 {
 
             Statement operacao = conexao.createStatement();
             Random rnd = new Random();
-            String nome = "Produto "+(rnd.nextInt(100)+1);
-            Integer quantidade = 20;
-            Float preco = 2.4F;
-
-            String sql = String.format(Locale.US, "INSERT INTO produto(nome, quantidade, preco, atualizado) VALUES('%s', %d , %f, CURRENT_TIMESTAMP)", nome, quantidade, preco);
-            System.out.println(sql);
-            operacao.executeUpdate(sql);
+            for (int i = 0; i < 10; i++) {
+                String nome = "Produto " + (rnd.nextInt(100) + 1);
+                Integer quantidade = (rnd.nextInt(20) + 1);
+                Float preco = (rnd.nextFloat() * 100 + 1);
+                String sql = String.format(Locale.US, "INSERT INTO produto(nome, quantidade, preco, atualizado) VALUES('%s', %d , %f, CURRENT_TIMESTAMP)", nome, quantidade, preco);
+                System.out.println(sql);
+                operacao.executeUpdate(sql);
+            }
 
             conexao.close();
         } catch (ClassNotFoundException ex) {
